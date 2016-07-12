@@ -1,0 +1,28 @@
+def DefaultConfig():
+    """
+    This is the default configuration for the script. Each key on the dictionay returned sets a different functionality.
+
+    It contains the following keys:
+    ExecutionMode: 'once' for a single execution, 'loop' for continuous execution
+    DaysOfWeek: A mask containing the values 'MoTuWeThFrSaSu', which indicates the days of the week that are valid to send the email
+    LoopIntervalMinutes: In loop mode, the interval (in minutes) between fetch of quotes
+    STMPServer: The SMTP server to use
+    SMTPPort: The port of the SMTP server to use
+    EmailFrom: The From email address to appear on the email message
+    EmailTo: The recipients of the email message
+    EmailPassword: The password of the user on the SMTP Server
+    EmailUser: The user on the SMTP Server
+    :return: A Dictionary with all configuration keys above.
+
+    """
+    return {
+        'ExecutionMode': 'loop',
+        'DaysOfWeek': 'MoTuWeThFrSaSu',
+        'LoopIntervalMinutes': 1,
+        'SMTPServer': 'smtp.somewhere.com.br',
+        'SMTPPort': '587',
+        'EmailFrom': 'ignite@somewhere.com.br',
+        'EmailTo': 'gbencke@gmail.com',
+        'EmailPassword': 'somepassword',
+        'EmailUser': 'someone@somewhere.com'
+    }
