@@ -55,8 +55,8 @@ def DefaultConfig():
     """
     return {
         'ExecutionMode': 'scheduler',
-        'ScheduleMode': 'MoTuWeThFrSaSu',
-        'ScheduleString': 1,
+        'ScheduleString': (("gbencke@gmail.com,ignite@benckesoftware.com.br", "interval", "'seconds': 30 "),
+                           ("mail@gbencke.com", "cron", "'day_of_week':'mon-fri', 'hour': '17' ")),
         'SMTPServer': 'smtp.somewhere.com.br',
         'SMTPPort': '587',
         'EmailFrom': 'ignite@somewhere.com.br',
