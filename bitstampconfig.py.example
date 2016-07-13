@@ -3,22 +3,40 @@ def DefaultConfig():
     This is the default configuration for the script. Each key on the dictionay returned sets a different functionality.
 
     It contains the following keys:
-    ExecutionMode: 'once' for a single execution, 'loop' for continuous execution
-    DaysOfWeek: A mask containing the values 'MoTuWeThFrSaSu', which indicates the days of the week that are valid to send the email
-    LoopIntervalMinutes: In loop mode, the interval (in minutes) between fetch of quotes
+
+    ExecutionMode: 'once' for a single execution, 'scheduler' for execution with a scheduler
+
+    ScheduleString: When using the scheduler, it contains the string containing the tuples for recipients and schedules for exemplo:
+
+    (("gbencke@gmail.com,teste@gmail.com","interval","'seconds': 30"),("mail@gbencke.com","cron","day_of_week='mon-fri', hour=17"))
+
+    As seen in the example above we have a job to send every 1 hour the quotes and another to send every mon-fri @ 5 PM
+
+    The parameters that can be used on the cron mode are described in:
+    http://apscheduler.readthedocs.io/en/3.0/modules/triggers/cron.html#module-apscheduler.triggers.cron
+
+    The parameters that can be used on the interval mode are described in:
+    http://apscheduler.readthedocs.io/en/3.0/modules/triggers/interval.html#module-apscheduler.triggers.interval
+
     STMPServer: The SMTP server to use
+
     SMTPPort: The port of the SMTP server to use
+
     EmailFrom: The From email address to appear on the email message
-    EmailTo: The recipients of the email message
+
+    EmailTo: The recipients of the email message in case of a "once" mode, this is ignored in "scheduler" mode
+
     EmailPassword: The password of the user on the SMTP Server
+
     EmailUser: The user on the SMTP Server
+
     :return: A Dictionary with all configuration keys above.
 
     """
     return {
-        'ExecutionMode': 'loop',
-        'DaysOfWeek': 'MoTuWeThFrSaSu',
-        'LoopIntervalMinutes': 1,
+        'ExecutionMode': 'scheduler',
+        'ScheduleMode': 'MoTuWeThFrSaSu',
+        'ScheduleString': 1,
         'SMTPServer': 'smtp.somewhere.com.br',
         'SMTPPort': '587',
         'EmailFrom': 'ignite@somewhere.com.br',
