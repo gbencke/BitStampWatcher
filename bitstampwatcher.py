@@ -70,7 +70,8 @@ def send_email(quote, smtp_server, smtp_port, email_from, email_to, email_user, 
     serv.ehlo()
     serv.starttls()
     serv.login(email_user, email_password)
-    serv.sendmail(msg['From'], msg['To'], msg.as_string())
+    recipients = msg['To'].split(',')
+    serv.sendmail(msg['From'], recipients, msg.as_string())
     serv.quit()
 
 
