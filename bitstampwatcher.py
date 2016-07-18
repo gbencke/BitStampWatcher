@@ -8,7 +8,6 @@ import ast
 import copy
 import bitstamp.client
 import smtplib
-
 from email.mime.text import MIMEText
 from bitstampconfig import DefaultConfig
 from sys import exit, argv
@@ -103,6 +102,10 @@ class job_to_execute:
         """ Instance Constructor """
         self.config = copy.deepcopy(config)  # Perform a clone of the dictionary
         self.config['EmailTo'] = recipients  # Make sure that the specific recipients of the job are set.
+        print("Configured {} to EmailTo:{}".format(self, self.config['EmailTo']))
+
+    def __repr__(self):
+        return "JobToRun:{}".format(self.config)
 
     def __call__(self):
         """ With the config dictionary encapsulated on the class instance, it sends a single quote to the recipients. """
